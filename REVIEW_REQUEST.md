@@ -39,7 +39,18 @@
     -   Подключен **Tailwind CSS v4** (новая версия с `@theme`).
 2.  **UI Библиотеки**:
     -   Интегрирован `lucide-react` для иконок.
-    -   Подготовлена база для компонентов **Shadcn UI** (`components.json`, `utils.ts` с `clsx` и `tailwind-merge`).
+    -   Подготовлена база для компонентов **Shadcn UI**
+    -   `components.json`: Shadcn UI configuration.
+
+### ✅ Внесенные исправления (по результатам ревью)
+-   **Безопасность**: Добавлены проверки переменных окружения в `client.ts` и `server.ts`.
+-   **БД**: В `schema.sql` добавлены индексы (category, status, dates), триггеры `updated_at`, и проверки `CHECK` (цена >= 0).
+-   **Middleware**: Реализован `middleware.ts` для управления сессиями.
+-   **Документация**: Обновлен `SUPABASE_SETUP.md` (добавлен promo_codes, исправлены ссылки), добавлен `.env.example`.
+-   **UI**: Главная страница `page.tsx` переписана с использованием дизайн-токенов.
+
+**Next Steps:**
+-   Implement Authentication (Login page).
     -   Настроена темизация (`next-themes`) для переключения Светлая/Темная тема.
 3.  **Дизайн-система (GreenBox Style)**:
     -   Из исходного кода макета (`Maket`) извлечены дизайн-токены.
