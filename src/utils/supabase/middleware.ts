@@ -32,7 +32,22 @@ export async function updateSession(request: NextRequest) {
     );
 
     // refreshing the auth token
-    await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // Защита роутов: если нет пользователя и он не на странице логина
+    const pathname = request.nextUrl.pathname;
+    if (!user && pathname !== '/login') {
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
+    }
+
+    // Если пользователь авторизован и заходит на /login, отправляем на главную админки
+    if (user && pathname === '/login') {
+        const url = request.nextUrl.clone();
+        url.pathname = '/';
+        return NextResponse.redirect(url);
+    }
 
     return response;
 }
